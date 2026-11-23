@@ -128,3 +128,30 @@ memory after free.
 I learned that a memory leak and a
 use-after-free are different errors.
 
+## 3. AI Critical Review
+
+I used AI to understand the Valgrind output.
+
+The AI first explained:
+
+"At the end of the program, one block
+of 6 bytes was not freed."
+
+This explanation was correct but incomplete.
+
+It did not identify which object
+was responsible for the memory leak.
+
+After checking the code, I found that
+Alice's name was not freed.
+
+person_free_partial frees the Person
+structure but not the name.
+
+This explains the 6-byte memory leak.
+
+I also checked the aliasing example.
+
+The invalid reads and write happen
+because b still points to freed memory.
+
